@@ -26,7 +26,7 @@ inputs:
     description: 'Upload files with private ACL, needed for S3 static website hosting'
     required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'upload-cloud'
