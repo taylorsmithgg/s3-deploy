@@ -3,6 +3,7 @@ const exec = require('@actions/exec');
 
 let deploy = function (params) {
   return new Promise((resolve, reject) => {
+    console.log(JSON.stringify(params, null, 2))
     const { folder, bucket, bucketRegion, distId, invalidation, deleteRemoved, noCache, private } = params;
 
     const distIdArg = distId ? `--distId ${distId}` : '';
