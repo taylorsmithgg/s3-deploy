@@ -1034,9 +1034,13 @@ function getBooleanInput(name) {
 
 async function run() {
   try {
-    const folder = core.getInput('folder');
-    const bucket = core.getInput('bucket');
-    const bucketRegion = core.getInput('bucket-region');
+    // Object.keys(process.env).forEach((input) => {
+    //   core.addPath(`${input}=${process.env[input]}`) 
+    // });
+
+    const folder = core.getInput('folder', {required: true});
+    const bucket = core.getInput('bucket', {required: true});
+    const bucketRegion = core.getInput('bucket-region', {required: true});
     const distId = core.getInput('dist-id');
     const invalidation = core.getInput('invalidation') || '/';
     const deleteRemoved = core.getInput('delete-removed') || false;
@@ -1049,6 +1053,7 @@ async function run() {
   }
 }
 
+// console.log(JSON.stringify(process.env, null, 2))
 run();
 
 
@@ -1076,6 +1081,7 @@ const exec = __webpack_require__(986);
 
 let deploy = function (params) {
   return new Promise((resolve, reject) => {
+    console.log(JSON.stringify(params, null, 2))
     const { folder, bucket, bucketRegion, distId, invalidation, deleteRemoved, noCache, private } = params;
 
     const distIdArg = distId ? `--distId ${distId}` : '';
